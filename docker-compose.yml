@@ -46,12 +46,12 @@ services:
     ports:
       - 30304:30304/tcp
       - 30304:30304/udp
-      - 127.0.0.1:8545:8545/tcp
+      - 0.0.0.0:8545:8545/tcp
       - 9005:9005/udp
-      - 127.0.0.1:8003:8003
+      - 0.0.0.0:8003:8003
       # - 80:80 #Let's Encrypt
       - 8000:8000/tcp #WSS
-      - 127.0.0.1:8645:8645
+      - 0.0.0.0:8645:8645
     <<:
       - *logging
     environment:
@@ -75,7 +75,7 @@ services:
     command:
       - --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - 127.0.0.1:9090:9090
+      - 0.0.0.0:9090:9090
     restart: on-failure:5
     depends_on:
       - postgres-exporter
@@ -94,7 +94,7 @@ services:
       - ./monitoring/configuration/customizations/custom-logo.svg:/usr/share/grafana/public/img/grafana_typelogo.svg:Z
       - ./monitoring/configuration/customizations/custom-logo.png:/usr/share/grafana/public/img/fav32.png:Z
     ports:
-      - 127.0.0.1:3000:3000
+      # - 0.0.0.0:3000:3000
       - 0.0.0.0:3000:3000
     restart: on-failure:5
     depends_on:
